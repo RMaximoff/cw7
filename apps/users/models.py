@@ -6,13 +6,6 @@ NULLABLE = {'blank': True, 'null': True}
 
 
 class User(AbstractUser):
-    username = None
-
-    email = models.EmailField(unique=True, verbose_name='Почта')
-    phone = models.CharField(max_length=35, verbose_name='Номер телефона', **NULLABLE)
-    city = models.CharField(max_length=235, verbose_name='Город', **NULLABLE)
-    avatar = models.ImageField(upload_to='users/', verbose_name='Аватарка', **NULLABLE)
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
-
+    tg_name = models.CharField(max_length=255, verbose_name='Имя')
+    chat_id = models.CharField(max_length=255, default=None, verbose_name='ID', **NULLABLE)
+    REQUIRED_FIELDS = ["email", "tg_name"]
