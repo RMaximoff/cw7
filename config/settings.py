@@ -191,3 +191,10 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
 TELEGRAM_KEY = os.getenv('TELEGRAM_KEY')
+
+CELERY_BEAT_SCHEDULE = {
+    'TelegramBotUpdates': {
+        'task': 'users.tasks.telegram_bot_updates',
+        'schedule': timedelta(minutes=1),
+    },
+}
