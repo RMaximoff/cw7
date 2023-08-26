@@ -20,7 +20,8 @@ class HabitSerializer(serializers.ModelSerializer):
                     raise serializers.ValidationError('Сопутствующая привычка должна быть приятной')
             elif data.get('execution_time'):
                 if data.get('execution_time') > 120:
-                    raise serializers.ValidationError('Время выполнения вашей привычки должно быть не более 120 секунд.')
+                    raise serializers.ValidationError('Время выполнения вашей привычки '
+                                                      'должно быть не более 120 секунд.')
             elif data.get('period'):
                 if data.get('period') > 7:
                     raise serializers.ValidationError('Выполнять привычку нельзя реже, чем 1 раз в 7 дней.')
@@ -30,11 +31,3 @@ class HabitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Habit
         fields = '__all__'
-
-
-
-
-
-
-
-

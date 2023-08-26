@@ -110,4 +110,3 @@ class HabitPublicListAPIViewTest(APITestCase):
     def test_get_public_habits(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-

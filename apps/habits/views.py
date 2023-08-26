@@ -1,6 +1,5 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
-
 from apps.habits.models import Habit
 from apps.habits.pagination import HabitsPagination
 from apps.habits.permissions import IsOwnerPermission
@@ -33,5 +32,3 @@ class HabitPublicListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         return Habit.objects.filter(is_public=True)
-
-
