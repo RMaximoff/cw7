@@ -8,13 +8,15 @@ class HabitSerializer(serializers.ModelSerializer):
     def validate(self, data):
         if self.instance:
             if self.instance.related_habit and (data.get('reward') or data.get('related_habit')):
-                raise serializers.ValidationError('Низзя выбрать вознаграждение и связанную с ним привычку для одной привычки.')
-            elif self.instance.is_pleasant and (data.get('reward') or data.get('related_habit')):
-                raise serializers.ValidationError('К приятным привычками низзя добавить награду или полезную привычку.')
-            elif data.get('is_pleasant') and (self.instance.reward or self.instance.related_habit):
-                raise serializers.ValidationError('К приятным привычками низзя добавить награду или полезную привычку.')
+                raise serializers.ValidationError('Низзя выбрать вознаграждение и связанную с ним привычку.')
+            elif self.instance.pleasant_habit and (data.get('reward') or data.get('related_habit')):
+                raise serializers.ValidationError('К приятным привычками низзя добавить '
+                                                  'вознаграждение или полезную привычку.')
+            elif data.get('pleasant_habit') and (self.instance.reward or self.instance.related_habit):
+                raise serializers.ValidationError('К приятным привычками низзя добавить '
+                                                  'вознаграждение или полезную привычку.')
             elif data.get('related_habit'):
-                if data.get('related_habit').is_pleasant is False:
+                if data.get('related_habit').pleasant_habit is False:
                     raise serializers.ValidationError('Сопутствующая привычка должна быть приятной')
             elif data.get('execution_time'):
                 if data.get('execution_time') > 120:
