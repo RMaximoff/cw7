@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://forty-snakes-melt.loca.lt/', '127.0.0.1']
 
 
 # Application definition
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
     'drf_yasg',
     'corsheaders',
+
+    'django_telegram_login',
 
     'apps.users',
     'apps.habits',
@@ -198,3 +200,6 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': timedelta(minutes=1),
     },
 }
+
+TELEGRAM_BOT_NAME = 'bot_drf'
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_KEY')
