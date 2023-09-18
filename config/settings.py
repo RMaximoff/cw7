@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://forty-snakes-melt.loca.lt/', '127.0.0.1']
+ALLOWED_HOSTS = ['https://forty-snakes-melt.loca.lt/', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -88,12 +88,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'habits',
-        'USER': os.getenv('DATABASES_USER'),
-        'PASSWORD': os.getenv('DATABASES_PASS'),
-        'HOST': '127.0.0.1',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'mysecretpassword',
+        'HOST': 'db',
     }
 }
 
