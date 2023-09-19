@@ -7,6 +7,17 @@ services:
       POSTGRES_PASSWORD: mysecretpassword
       PGDATA: /var/lib/postgresql/data/pgdata
 
+  redis:
+    image: redis
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - .env
   app:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -14,6 +25,8 @@ services:
       - '8000:8000'
     depends_on:
       - db
+    env_file:
+      - .env
 
 
 
